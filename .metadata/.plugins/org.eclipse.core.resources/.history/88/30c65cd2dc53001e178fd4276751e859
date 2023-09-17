@@ -1,0 +1,110 @@
+package StringVars;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LoginProgram {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            LoginFrame loginFrame = new LoginFrame();
+            loginFrame.setVisible(true);
+        });
+    }
+}
+
+class LoginFrame extends JFrame {
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+
+    public LoginFrame() {
+        setTitle("Login Program");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 150);
+        setLayout(new FlowLayout());
+
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField(15);
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField(15);
+        JButton loginButton = new JButton("Login");
+
+        add(usernameLabel);
+        add(usernameField);
+        add(passwordLabel);
+        add(passwordField);
+        add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                char[] passwordChars = passwordField.getPassword();
+                String password = new String(passwordChars);
+
+                // Validate the username and password
+                boolean loggedIn = LoginValidator.login(username, password);
+
+                if (loggedIn) {
+                    dispose(); // Close the login frame
+                    MenuFrame menuFrame = new MenuFrame();
+                    menuFrame.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(LoginFrame.this, "Login failed. Invalid username or password.");
+                }
+            }
+        });
+    }
+}
+
+class MenuFrame extends JFrame {
+    private JButton button1;
+    private JButton button2;
+    // Add more buttons for other menu options
+
+    public MenuFrame() {
+        setTitle("Menu");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setLayout(new GridLayout(10, 1));
+
+        button1 = new JButton("1. Search Odd Numbers");
+        button2 = new JButton("2. Search Even Numbers");
+        // Add more buttons for other menu options
+
+        add(button1);
+        add(button2);
+        // Add more buttons to the menu frame
+
+        // Add action listeners for each button (similar to your existing code)
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Implement action for button 1
+                // ...
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Implement action for button 2
+                // ...
+            }
+        });
+        // Add action listeners for other buttons
+    }
+}
+
+class LoginValidator {
+    public static boolean login(String username, String password) {
+        // Define valid username-password pairs
+        String[] validUsernames = {"cope", "barcelona", "belaos", "dacillo", "broqueza"};
+        String[] validPasswords = {"admin1", "admin2", "admin3", "admin4", "admin5"};
+
+        // Check if the entered username and password match any of the valid pairs
+        for (int i = 0; i < validUsernames.length; i++) {
+            if (username.equals(validUsernames[i]) && password.equals(validPasswords[i])) {
+                return true; // Match found, login successful
+            }
+        }
+
+        return false; // No match found, login failed
+    }
+}

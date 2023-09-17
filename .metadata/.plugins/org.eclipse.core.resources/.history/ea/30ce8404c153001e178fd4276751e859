@@ -1,0 +1,138 @@
+
+package StringVars; 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class StringVars {
+    private JFrame frame;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+
+    public StringVars() {
+        frame = new JFrame("Login Program");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 150);
+        frame.setLayout(new FlowLayout());
+
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField(15);
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField(15);
+        JButton loginButton = new JButton("Login");
+
+        frame.add(usernameLabel);
+        frame.add(usernameField);
+        frame.add(passwordLabel);
+        frame.add(passwordField);
+        frame.add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                char[] passwordChars = passwordField.getPassword();
+                String password = new String(passwordChars);
+
+                // Validate the username and password
+                boolean loggedIn = login(username, password);
+
+                if (loggedIn) {
+                    JOptionPane.showMessageDialog(frame, "Login successful. Welcome, " + username + "!");
+                    showMenu();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Login failed. Invalid username or password.");
+                }
+            }
+        });
+
+        frame.setVisible(true);
+    }
+
+    private void showMenu() {
+        // Create a menu with the specified options
+        String[] options = {
+            "Search Odd Numbers",
+            "Search Even Numbers",
+            "Swap Odd numbers and Even numbers",
+            "Search for the Largest numbers",
+            "Search for Smallest numbers",
+            "Swap the Largest numbers and Smallest numbers",
+            "Delete nth element",
+            "Insertion of elements",
+            "Delete elements divisible by 3",
+            "Delete elements divisible by user input"
+        };
+
+        String selectedOption = (String) JOptionPane.showInputDialog(
+            frame,
+            "Select an option:",
+            "Menu",
+            JOptionPane.PLAIN_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+
+        // Handle the selected option here (you can add code for each option)
+        if (selectedOption != null) {
+            switch (selectedOption) {
+                case "Search Odd Numbers":
+                    // Implement the action for option 1
+                    break;
+                case "Search Even Numbers":
+                    // Implement the action for option 2
+                    break;
+                case "Swap Odd numbers and Even numbers":
+                    // Implement the action for option 3
+                    break;
+                case "Search for the Largest numbers":
+                    // Implement the action for option 4
+                    break;
+                case "Search for Smallest numbers":
+                    // Implement the action for option 5
+                    break;
+                case "Swap the Largest numbers and Smallest numbers":
+                    // Implement the action for option 6
+                    break;
+                case "Delete nth element":
+                    // Implement the action for option 7
+                    break;
+                case "Insertion of elements":
+                    // Implement the action for option 8
+                    break;
+                case "Delete elements divisible by 3":
+                    // Implement the action for option 9
+                    break;
+                case "Delete elements divisible by user input":
+                    // Implement the action for option 10
+                    break;
+                default:
+                    // Handle unexpected option
+            }
+        }
+    }
+
+    private boolean login(String username, String password) {
+        // Define valid username-password pairs
+        String[] validUsernames = {"cope", "barcelona", "belaos", "dacillo", "broqueza"};
+        String[] validPasswords = {"admin1", "admin2", "admin3", "admin4", "admin5"};
+
+        // Check if the entered username and password match any of the valid pairs
+        for (int i = 0; i < validUsernames.length; i++) {
+            if (username.equals(validUsernames[i]) && password.equals(validPasswords[i])) {
+                return true; // Match found, login successful
+            }
+        }
+
+        return false; // No match found, login failed
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new StringVars();
+            }
+        });
+    }
+}

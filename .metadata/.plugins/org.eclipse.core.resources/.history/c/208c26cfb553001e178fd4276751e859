@@ -1,0 +1,49 @@
+package username.login.main;
+import java.util.Scanner;
+
+
+public class Login_userName {
+
+	public static void main(String[] args) {
+		 // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for username and password
+        System.out.print("Enter username: ");
+        String enteredUsername = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String enteredPassword = scanner.nextLine();
+
+        // Check if the entered username and password are valid
+        boolean loggedIn = UserCred.login(enteredUsername, enteredPassword);
+
+        if (loggedIn) {
+            System.out.println("Welcome, " + enteredUsername + "!");
+            
+            // Display the menu options
+            System.out.println("<1> Search Odd Numbers");
+            System.out.println("<2> Search Even Numbers");
+            System.out.println("<3> Swap Odd numbers and Even numbers");
+            System.out.println("<4> Search Largest numbers");
+            System.out.println("<5> Search Smallest numbers");
+            System.out.println("<6> Swap Largest numbers and Smallest numbers");
+            System.out.println("<7> Delete nth element");
+            System.out.println("<8> Insertion of elements");
+            System.out.println("<9> Delete elements divisible by 3");
+            System.out.println("<10> Delete elements divisible by user input");
+            System.out.println("Enter < -1 > to Quit");
+            
+            int choice;
+            do {
+                System.out.print("Select Operation: ");
+                choice = scanner.nextInt();
+                OperationHandler.performOperation(choice); // Call the function to perform the selected operation
+            } while (choice != -1);
+        } else {
+            System.out.println("Login failed. Invalid username or password.");
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}

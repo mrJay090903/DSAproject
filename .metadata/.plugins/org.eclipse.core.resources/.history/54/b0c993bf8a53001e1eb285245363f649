@@ -1,0 +1,5 @@
+package username.login.main;
+
+public class UserCred {
+
+}

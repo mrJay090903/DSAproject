@@ -1,0 +1,13 @@
+package StringVars;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class FindingLargestNumber {
+	scannersc
+	int arr[];
+	int n;
+	
+	
+	
+	
+}

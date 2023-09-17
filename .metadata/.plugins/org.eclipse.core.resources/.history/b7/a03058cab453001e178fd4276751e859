@@ -1,0 +1,64 @@
+package username.login.main;
+
+public class OperationHandler {
+	public static void performOperation(int choice) {
+        switch (choice) {
+            case 1:
+                // Perform operation 1: Search Odd Numbers
+			int[] numbers = null;
+			FindOddNum.findAndPrintOddNumbers(numbers); // Call the FindOddNum method
+                // Add your code for this operation here
+                break;
+            case 2:
+                // Perform operation 2: Search Even Numbers
+                System.out.println("Performing operation 2: Search Even Numbers");
+                // Add your code for this operation here
+                break;
+            case 3:
+                // Perform operation 3: Swap Odd and Even Numbers
+                System.out.println("Performing operation 3: Swap Odd numbers and Even numbers");
+                // Add your code for this operation here
+                break;
+            case 4:
+                // Perform operation 4: Search Largest Numbers
+                System.out.println("Performing operation 4: Search Largest numbers");
+                // Add your code for this operation here
+                break;
+            case 5:
+                // Perform operation 5: Search Smallest Numbers
+                System.out.println("Performing operation 5: Search Smallest numbers");
+                // Add your code for this operation here
+                break;
+            case 6:
+                // Perform operation 6: Swap Largest and Smallest Numbers
+                System.out.println("Performing operation 6: Swap Largest numbers and Smallest numbers");
+                // Add your code for this operation here
+                break;
+            case 7:
+                // Perform operation 7: Delete nth Element
+                System.out.println("Performing operation 7: Delete nth element");
+                // Add your code for this operation here
+                break;
+            case 8:
+                // Perform operation 8: Insertion of Elements
+                System.out.println("Performing operation 8: Insertion of elements");
+                // Add your code for this operation here
+                break;
+            case 9:
+                // Perform operation 9: Delete Elements Divisible by 3
+                System.out.println("Performing operation 9: Delete elements divisible by 3");
+                // Add your code for this operation here
+                break;
+            case 10:
+                // Perform operation 10: Delete Elements Divisible by User Input
+                System.out.println("Performing operation 10: Delete elements divisible by user input");
+                // Add your code for this operation here
+                break;
+            case -1:
+                System.out.println("Exiting the program.");
+                break;
+            default:
+                System.out.println("Invalid choice. Please enter a valid option.");
+        }
+    }
+}

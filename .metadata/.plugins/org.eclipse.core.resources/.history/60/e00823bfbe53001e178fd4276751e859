@@ -1,0 +1,30 @@
+//a program that use a scanner class
+
+package StringVars; 
+
+import javax.swing.JOptionPane;
+
+public class StringVars {
+ 
+	public static void main(String[] args) {
+	
+		String first_word; // asking the user to input first word
+		
+		first_word =JOptionPane.showInputDialog("First word: ");
+		
+		String second_word; //asking the user to input second word
+		
+		second_word =JOptionPane.showInputDialog("Second word: ");
+		
+		String third_word; //asking the user to input third word
+		
+		third_word =JOptionPane.showInputDialog("Third word: ");
+		
+		
+	String three_words ="The Three words is : "+ first_word+"," + second_word + "," + third_word;
+		
+		JOptionPane.showMessageDialog(null, three_words);
+ System .exit(0);
+	}
+
+}

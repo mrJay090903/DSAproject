@@ -1,0 +1,134 @@
+package StringVars;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+class UserCred {
+    private String username;
+    private String password;
+
+    public UserCred(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+}
+
+class MenuButton extends JButton {
+    public MenuButton(String text, ActionListener listener) {
+        super(text);
+        addActionListener(listener);
+    }
+}
+
+public class StringVars {
+    private JFrame frame;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private MenuButton[] menuButtons;
+    private UserCred[] userCredentials;
+
+    public StringVars() {
+        frame = new JFrame("Login Program");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 150);
+        frame.setLayout(new FlowLayout());
+
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField(15);
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField(15);
+        JButton loginButton = new JButton("Login");
+
+        frame.add(usernameLabel);
+        frame.add(usernameField);
+        frame.add(passwordLabel);
+        frame.add(passwordField);
+        frame.add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                char[] passwordChars = passwordField.getPassword();
+                String password = new String(passwordChars);
+
+                // Validate the username and password
+                boolean loggedIn = login(username, password);
+
+                if (loggedIn) {
+                    JOptionPane.showMessageDialog(frame, "Login successful. Welcome, " + username + "!");
+                    // Close the login frame
+                    frame.dispose();
+                    showMenu();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Login failed. Invalid username or password.");
+                }
+            }
+        });
+
+        frame.setVisible(true);
+    }
+
+ // Inside the showMenu() method
+    private void showMenu() {
+        // Create a menu with options numbered from 1 to 10
+        JFrame menuFrame = new JFrame("Menu");
+        menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Dispose when closed
+        menuFrame.setSize(400, 300);
+        menuFrame.setLayout(new GridLayout(10, 1)); // 10 rows, 1 column for options
+
+        // Create MenuButton instances for each option
+        menuButtons = new MenuButton[10];
+        menuButtons[0] = new MenuButton("1. Search Odd Numbers", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Action for button 1: Search Odd Numbers
+                // Implement the action here
+            }
+        });
+
+        // Create additional menu buttons similarly for options 2 to 10
+
+        // Add buttons to the menu frame
+        for (MenuButton button : menuButtons) {
+            menuFrame.add(button);
+        }
+
+        // Make the menu frame visible
+        menuFrame.setVisible(true);
+    }
+    private boolean login(String username, String password) {
+        // Define valid username-password pairs
+        userCredentials = new UserCred[]{
+            new UserCred("cope", "admin1"),
+            new UserCred("barcelona", "admin2"),
+            new UserCred("belaos", "admin3"),
+            new UserCred("dacillo", "admin4"),
+            new UserCred("broqueza", "admin5")
+        };
+
+        // Check if the entered username and password match any of the valid pairs
+        for (UserCred cred : userCredentials) {
+            if (username.equals(cred.getUsername()) && password.equals(cred.getPassword())) {
+                return true; // Match found, login successful
+            }
+        }
+
+        return false; // No match found, login failed
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new StringVars();
+            }
+        });
+    }
+}

@@ -1,0 +1,151 @@
+//a program that use a scanner class
+
+package StringVars; 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+public class StringVars {
+    private JFrame frame;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+
+    public StringVars() {
+        frame = new JFrame("Login Program");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 150);
+        frame.setLayout(new FlowLayout());
+
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField(15);
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField(15);
+        JButton loginButton = new JButton("Login");
+
+        frame.add(usernameLabel);
+        frame.add(usernameField);
+        frame.add(passwordLabel);
+        frame.add(passwordField);
+        frame.add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                char[] passwordChars = passwordField.getPassword();
+                String password = new String(passwordChars);
+
+                // Validate the username and password
+                boolean loggedIn = login(username, password);
+
+                if (loggedIn) {
+                    JOptionPane.showMessageDialog(frame, "Login successful. Welcome, " + username + "!");
+                    showMenu();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Login failed. Invalid username or password.");
+                }
+            }
+        });
+
+        frame.setVisible(true);
+    }
+
+    private void showMenu() {
+        // Create a menu with options and their corresponding actions
+        JFrame menuFrame = new JFrame("Menu");
+        menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menuFrame.setSize(400, 300);
+        menuFrame.setLayout(new GridLayout(10, 1)); // 10 rows, 1 column for options
+
+        JButton[] optionButtons = new JButton[10];
+        for (int i = 0; i < 10; i++) {
+            optionButtons[i] = new JButton("Option " + (i + 1));
+            int optionNumber = i + 1;
+
+            optionButtons[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    performOptionAction(optionNumber);
+                }
+            });
+
+            menuFrame.add(optionButtons[i]);
+        }
+
+        menuFrame.setVisible(true);
+    }
+
+    private void performOptionAction(int optionNumber) {
+        switch (optionNumber) {
+            case 1:
+                // Option 1: Search Odd Numbers
+                // Implement the logic to search and display odd numbers
+                break;
+            case 2:
+                // Option 2: Search Even Numbers
+                // Implement the logic to search and display even numbers
+                break;
+            case 3:
+                // Option 3: Swap Odd numbers and Even numbers
+                // Implement the logic to swap odd and even numbers
+                break;
+            case 4:
+                // Option 4: Search Largest numbers
+                // Implement the logic to search and display the largest numbers
+                break;
+            case 5:
+                // Option 5: Search Smallest numbers
+                // Implement the logic to search and display the smallest numbers
+                break;
+            case 6:
+                // Option 6: Swap Largest numbers and Smallest numbers
+                // Implement the logic to swap the largest and smallest numbers
+                break;
+            case 7:
+                // Option 7: Delete nth element
+                // Implement the logic to delete the nth element from a list
+                break;
+            case 8:
+                // Option 8: Insertion of elements
+                // Implement the logic to insert elements into a list
+                break;
+            case 9:
+                // Option 9: Delete elements divisible by 3
+                // Implement the logic to delete elements divisible by 3 from a list
+                break;
+            case 10:
+                // Option 10: Delete elements divisible by user input
+                // Implement the logic to delete elements divisible by user input from a list
+                break;
+            default:
+                break;
+        }
+    }
+
+    private boolean login(String username, String password) {
+        // Define valid username-password pairs
+        String[] validUsernames = {"cope", "barcelona", "belaos", "dacillo", "broqueza"};
+        String[] validPasswords = {"admin1", "admin2", "admin3", "admin4", "admin5"};
+
+        // Check if the entered username and password match any of the valid pairs
+        for (int i = 0; i < validUsernames.length; i++) {
+            if (username.equals(validUsernames[i]) && password.equals(validPasswords[i])) {
+                return true; // Match found, login successful
+            }
+        }
+
+        return false; // No match found, login failed
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new StringVars();
+            }
+        });
+    }
+}
+
+		    
+		
